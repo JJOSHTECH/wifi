@@ -1,5 +1,5 @@
 # wifi
-Wifi Accesspoint
+Wifi Accesspoint there is no DHCP Server included. You will need an external one.
 
 ## Variables
 
