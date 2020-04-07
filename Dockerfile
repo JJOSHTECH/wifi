@@ -1,5 +1,8 @@
 # Use a Debian Image
-FROM debian:stretch-slim
+FROM arm32v7/debian:stretch-slim
+
+#ARM Support
+COPY qemu-arm-static /usr/bin
 
 # Update and Upgrade Repo
 RUN apt update && apt full-upgrade -y && apt autoremove && apt clean
