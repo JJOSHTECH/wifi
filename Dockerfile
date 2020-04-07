@@ -22,6 +22,6 @@ ENV WIFI_WPA="2"
 ENV WIFI_PASSPHRASE="PASSPHRASE"
 
 # Copy conf file
-COPY ./hostapd.conf /etc/hostapd/hostapd.conf.conf
+COPY ./hostapd.conf /etc/hostapd/hostapd.conf
 
-CMD ["hostapd -t"]
+CMD ["hostapd /etc/hostapd/hostapd.conf"]
