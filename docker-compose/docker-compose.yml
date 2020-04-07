@@ -1,0 +1,37 @@
+version: '3.6'
+volumes:
+        hostapd-conf:
+                driver_opts:
+                        type: "none"
+                        device: "/path/hostapd.conf"
+                        o: "bind"
+                       
+networks:
+        interconnect:
+                name: "WIFI-INTERCONNECT"
+                ipam:
+                        driver: "default"
+                        config:
+                                  - subnet: "172.16.16.0/24"
+       
+services:
+        sshbackupclient:
+                image: "jjoshtech/wifi:armhf"
+                container_name: "WIFI-AP"
+                hostname: "WIFI-AP"
+                environment:
+                  WIFI_INTERFACE="wlan0"
+                  WIFI_DRIVER="nl80211"
+                  WIFI_SSID="WIFI_SSID"
+                  WIFI_CHANNEL="6"
+                  WIFI_MODE="g"
+                  WIFI_MODE_N = "1"
+                  WIFI_AUTH="1"
+                  WIFI_WPA="2"
+                  WIFI_PASSPHRASE="PASSPHRASE"
+                volumes:
+                  - "hostapd-conf:/etc/hostapd.conf"
+                networks:
+                  interconnect:
+                    ipv4_address: "172.16.16.2"
+                restart: "unless-stopped"
