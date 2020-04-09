@@ -11,7 +11,7 @@ RUN apt update && apt full-upgrade -y && apt autoremove && apt clean
 RUN apt install hostapd wireless-tools -y
 
 # Configuration Volumes
-VOLUME ["/etc/hostapd.conf"]
+VOLUME ["/etc/hostapd/hostapd.conf"]
 
 # Define Environment Variables
 ENV WIFI_INTERFACE="wlan0"
