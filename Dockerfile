@@ -8,7 +8,7 @@ COPY qemu-arm-static /usr/bin
 RUN apt update && apt full-upgrade -y && apt autoremove && apt clean
 
 # Install ClamAV Deamon
-RUN apt install hostapd wireless-tools
+RUN apt install hostapd wireless-tools -y
 
 # Configuration Volumes
 VOLUME ["/etc/hostapd.conf"]
