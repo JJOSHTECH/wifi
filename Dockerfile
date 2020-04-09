@@ -7,8 +7,11 @@ COPY qemu-arm-static /usr/bin
 # Update and Upgrade Repo
 RUN apt update && apt full-upgrade -y && apt autoremove && apt clean
 
-# Install ClamAV Deamon
+# Install WIFI Tools Deamon
 RUN apt install hostapd wireless-tools -y
+
+# Ordner Erstellen
+RUN mkdir -p /etc/hostapd/
 
 # Configuration Volumes
 VOLUME ["/etc/hostapd/"]
@@ -27,4 +30,5 @@ ENV WIFI_PASSPHRASE="PASSPHRASE"
 # Copy conf file
 COPY ./hostapd.conf /etc/hostapd/hostapd.conf
 
+# Start deamon in foreground
 CMD ["hostapd /etc/hostapd/hostapd.conf"]
